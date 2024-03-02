@@ -55,7 +55,7 @@ export const Container = styled.div`
   background: linear-gradient(
     75.16deg,
     rgba(0, 0, 0, 0.95) 70.4%,
-    rgba(255, 255, 255, 0.20) 100.55%
+    rgba(255, 255, 255, 0.16) 100.55%
   );
   border: 1px solid rgba(255, 255, 255, 0.4);
   text-align: center;
