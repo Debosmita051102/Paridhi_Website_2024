@@ -5,19 +5,9 @@ export const StyledContainer = styled.div`
   background-image: url(${"https://images.unsplash.com/photo-1603366615917-1fa6dad5c4fa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"});
   background-size: cover;
   background-position: center;
-  height: 90vh;
+  height: 92vh;
   width: 100vw;
   font-family: 'Jost', sans-serif;
-`;
-
-export const Box = styled.div`
-   position: absolute;
-	-webkit-transform: translate(-50%, -50%);
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	top: 50%;
-	left: 50%;
-  width:1050px;
 `;
 
 export const HeroMain = styled.div`
@@ -37,7 +27,6 @@ export const HeroMain = styled.div`
 export const HeroContainer = styled.div`
   height: 80%;
   width: 100%;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,65 +38,111 @@ export const HeroContainer = styled.div`
 
 
 export const Title = styled.div`
-  /* background: rgb(238,174,202);
-  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(222,57,36,1) 100%);
 
-    -webkit-text-fill-color: transparent;
-    -webkit-background-clip: text;
   
-  font-weight: bold; */
-  
-  font-size:5rem;
+  font-size:6rem;
   text-align: center;
-  
-  font-weight:bold;
-  letter-spacing:0.5rem;
+  letter-spacing:1rem;
   
   
 `;
 
 
 
-const cursorAnimation = keyframes`
-  0%, 100% {
-    border-color: #212121;
-  }
-`;
-
-
- const textAnimation = keyframes`
+const glitchAnimation = keyframes`
   0% {
-    width: 0;
+    text-shadow: .05em 0 0 rgba(255, 0, 0, .75),
+                -.05em -.025em 0 rgba(0, 255, 0, .75),
+                .025em .05em 0 rgba(0, 0, 255, .75);
+  }
+  14% {
+    text-shadow: .05em 0 0 rgba(255, 0, 0, .75),
+                -.05em -.025em 0 rgba(0, 255, 0, .75),
+                .025em .05em 0 rgba(0, 0, 255, .75);
+  }
+  15% {
+    text-shadow: -.05em -.025em 0 rgba(255, 0, 0, .75),
+                .025em .025em 0 rgba(0, 255, 0, .75),
+                -.05em -.05em 0 rgba(0, 0, 255, .75);
+  }
+  49% {
+    text-shadow: -.05em -.025em 0 rgba(255, 0, 0, .75),
+                .025em .025em 0 rgba(0, 255, 0, .75),
+                -.05em -.05em 0 rgba(0, 0, 255, .75);
+  }
+  50% {
+    text-shadow: .025em .05em 0 rgba(255, 0, 0, .75),
+                .05em 0 0 rgba(0, 255, 0, .75),
+                 0 -.05em 0 rgba(0, 0, 255, .75);
+  }
+  99% {
+    text-shadow: .025em .05em 0 rgba(255, 0, 0, .75),
+                .05em 0 0 rgba(0, 255, 0, .75),
+                 0 -.05em 0 rgba(0, 0, 255, .75);
   }
   100% {
-    width: 14ch;
+    text-shadow: -.025em 0 0 rgba(255, 0, 0, .75),
+                -.025em -.025em 0 rgba(0, 255, 0, .75),
+                -.025em -.05em 0 rgba(0, 0, 255, .75);
   }
-`; 
-
-// Styled components
-export const TitleContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: clamp(2rem, 2.8vw, 5rem);
-
-  font-family: Raleway;
-  font-weight: bold;
 `;
+
+
 
 export const Typewriter = styled.div`
-  width: 21.5ch;
-  white-space: nowrap;
-  overflow: hidden;
-  /* border-right: 4px solid #212121; */
-  /* animation: ${cursorAnimation} 1s step-start infinite;
-  animation: ${textAnimation} 5s steps(18) alternate infinite; */
+  font-size: 100%;
+  text-shadow: 0 0 18px white;
+  position: relative;
+  margin: 0;
+  color: white;
+  font-size: 6rem;
+  font-weight: 900;
+  position: relative;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+
+  
+  text-shadow: .05em 0 0 rgba(255, 0, 0, .75),
+              -.05em -.025em 0 rgba(0, 255, 0, .75),
+              .025em .05em 0 rgba(0, 0, 255, .75);
+  animation: ${glitchAnimation} 625ms infinite;
+  
+
+  &::before, &::after {
+    content: attr(data-text);
+    position: absolute;
+    letter-spacing: .025em;
+    top: 0;
+    left: 0;
+    opacity: .7;
+  }
+
+  &::before {
+    animation: ${glitchAnimation} 675ms infinite;
+    transform: translate(-.035em, -.025em);
+    clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  }
+
+  &::after {
+    animation: ${glitchAnimation} 333ms infinite;
+    transform: translate(.035em, .025em);
+    clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+  }
+
+
+  
 `;
+
 
 export const HeroText = styled.div`
   font-size: large;
   text-align: center;
+  font-weight:900;
+  
+  font-size:3rem;
+  
+    
+
   @media (max-width: 600px) {
     font-weight: 800;
     padding: 3%;
@@ -121,7 +156,7 @@ export const CountdownContainer = styled.div`
   gap: 10%;
   font-family: "Arial", sans-serif;
   text-align: center;
-  margin-top: 50px;
+  margin-top:100px;
   width: 100%;
   height: 30%;
   @media (max-width: 600px) {
@@ -137,6 +172,7 @@ export const CountdownItem = styled.div`
   height: 100%;
   width: 30%;
   font-size: 5rem;
+  
   @media (max-width: 600px) {
     font-size: 2rem;
   }
@@ -146,7 +182,9 @@ export const CountdownItem = styled.div`
 
 export const CountText = styled.div`
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 600;
+  padding:10px;
+  
   @media (max-width: 600px) {
     font-size: 10px;
     font-weight: 800;
@@ -170,7 +208,21 @@ const dripAnimation = keyframes`
   }
 `;
 
-export const DrippingDigit = styled.div``;
+export const DrippingDigit = styled.div`
+  background-color: black;
+  text-align: center;
+  font-size: 6vw;
+  font-weight:400;
+  margin: 0 2.5%;
+  color: white;
+  padding: 20px;
+  width: 65%;
+  border-radius: 20px;
+  border-width:50px;
+  box-sizing: border-box;
+  box-shadow: 0 0.5rem 0.4rem 0.01rem hsl(70, 0%, 19%);
+
+`;
 
 
 
