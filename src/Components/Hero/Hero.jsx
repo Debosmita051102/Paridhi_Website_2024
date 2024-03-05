@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import baffle from 'baffle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faLinkedin, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
@@ -8,7 +9,6 @@ import {
   CountdownContainer,
   CountdownItem,
   Title,
-  TitleContainer,
   Typewriter,
   HeroText,
   HeroContainer,
@@ -18,7 +18,6 @@ import {
   Btn,
   FontAwesomeIconStyled,
   DrippingDigit,
-  Box,
   StyledContainer
 } from "./Hero.styled";
 
@@ -94,7 +93,24 @@ const CountdownTimer = ({ targetDate }) => {
 };
 
 const Hero = () => {
-  const targetDate = new Date("2024-03-01T23:59:59");
+  const targetDate = new Date("2024-03-06T23:59:59");
+
+  const baffleRef = useRef(null);
+
+  useEffect(() => {
+    const text = baffle(baffleRef.current);
+    text.set({
+      characters: '!/|~#.^+*$#%nwf',
+      speed: 300
+    });
+    text.start();
+    text.reveal(2000);
+
+    // Clean up baffle instance on unmount
+    return () => {
+      text.stop();
+    };
+  }, []);
 
   return (
     <>
@@ -103,17 +119,17 @@ const Hero = () => {
           <HeroContainer>
           <Title>
            
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700" />
-        <div className="container">
-          <Typewriter>
-            Paridhi 2024
-          </Typewriter>
-        </div>
+        
+        <Typewriter className="baffle" ref={baffleRef}>
+          
+              Paridhi 2024
+          
+        </Typewriter>
         
          </Title>
             <HeroText>
-              The Inter-College TechFest Of Meghnad Saha Institute of Technology & Organised by MEGATRONIX, <br />
-              The Official Technical Club of MSIT
+              Starts in
+              
             </HeroText>
            
             <CountdownTimer targetDate={targetDate} />
@@ -137,7 +153,7 @@ const Hero = () => {
               </Middle>
         </Footer> 
 
-        </HeroMain>
+      </HeroMain>
       </StyledContainer>
     </>
   );
